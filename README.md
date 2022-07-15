@@ -1,6 +1,6 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project: https://velvety-cactus-2c4758.netlify.app/.
 
 ## Available Scripts
 
