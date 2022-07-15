@@ -1,0 +1,1 @@
+{condition === "Sunny" ? <img src="images/all/sunrise.svg" alt="" /> : <img src="images/all/partly-cloudy-day-hail.svg" alt="" />}

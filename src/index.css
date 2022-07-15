@@ -1,13 +1,201 @@
-body {
+*{
+  padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+  font-family: "montserrat", sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.app{
+  background-color:  #64b5f6;
+}
+
+.nav-bar{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  box-shadow: 0 2px 10px 1px rgba(0, 0, 0, .25);
+  cursor: pointer;
+  transition: .5s ease-in-out;
+  position: sticky;
+  top: 0%;
+  z-index: 5;
+  border-bottom: 1px solid #000;
+  background-color: #64b5f6;
+}
+
+.nav-bar:hover{
+  box-shadow: 0 2px 10px 1px rgba(255, 255, 255, 0.3);
+}
+
+.nav-bar .search-box{
+  border-radius: 1.5rem;
+  border: 2px solid rgb(200, 255, 223);
+  font-size: .8em;
+  width: 5.4rem;
+  background-color: rgba(255, 255, 255, 0.6);
+  transition: .5s ease-in-out;
+  color: rgb(59, 59, 59);
+  padding: 8px 20px;
+}
+
+.nav-bar .search-box:focus{
+  width: 12rem; 
+  background-color: rgba(255, 255, 255, .8);
+  outline: none;
+}
+
+.mid-image{
+  width: 100%;
+  background-color: aqua;
+  margin: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.mid-image img{
+  min-width: 100%;
+}
+
+.mid-image .txt{
+  position: absolute;
+  height: 100%;
+  color: #fff;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  background-image: linear-gradient(45deg, rgba(102, 102, 102, 0.392), rgba(1, 61, 36, 0.704));
+}
+
+.grid-section{
+  padding: 1.2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 40px;
+  justify-content: center;
+}
+
+.grid-item{
+  background-color: rgba(255, 255, 255, 0.);
+  border-radius: .4rem;
+  padding: 3.5rem 10px 2rem 10px;
+  margin-top: 10px;
+  width: 100%;
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  background-image: linear-gradient(to left, rgba(255, 255, 255, 0.212), rgba(0, 0, 0, .1));
+  backdrop-filter: blur(5px);
+  transition: .1s ease-in-out;
+  cursor: pointer;
+  align-items: center;
+}
+
+
+.grid-item:hover{
+  box-shadow: -5px 0 20px rgba(0, 0, 0, .15);
+  padding: 3.6rem 11px 2.1rem 11px;
+}
+
+.grid-item:hover img{
+  width: 11rem;
+  animation: weatherIcon .5s ease infinite;
+}
+
+.grid-item img{
+  width: 10rem;
+  position: absolute;
+  top: -2.5%;
+  z-index: -1;
+  transition: .25s ease-in-out;
+  margin-top: -5rem;
+}
+
+a, a:visited, a:link{
+  color: #fff;
+  text-decoration: none;
+  font-style: normal;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 5rem;
+}
+
+
+.balls .ball{
+  height: 100px;
+  position: absolute;
+  width: 100px;
+  animation: ball .1s ease;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.236);
+}
+
+.balls .ball:first-child{
+  top: -10%;
+  right: -5%;
+}
+.balls .ball:last-child{
+  bottom: 10%;
+  left: -5%;
+}
+
+.hom:hover .ball:first-child{
+  animation: ball 2.5s ease-in-out infinite;
+}
+.hom:hover .ball:last-child{
+  animation: ball 2.5s ease-in-out infinite;
+  animation-delay: 5s;
+}
+
+
+@keyframes weatherIcon {
+  50%{
+    transform: rotate(-2deg)
+  }
+  100%{
+    transform: rotate(2deg);
+  }
+}
+
+@keyframes ball {
+  0%,20%,50%,80%,100%{
+    transform: translateY(0);
+  }
+  40%{
+    transform: translateY(-10px);
+  }
+  60%{
+    transform: translateY(10px);
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .grid-section{
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+}
+
+
+@media screen and (max-width: 700px) {
+  .grid-section{
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+    
+  .grid-item:hover img{
+    margin-top: -10rem;
+    width: 18rem;
+  }
+
+  .grid-item img{
+    width: 15rem;
+    margin-top: -8rem;
+  }
 }
