@@ -1,7 +1,5 @@
 # Getting Started with Create React App
 
-This project: https://velvety-cactus-2c4758.netlify.app/.
-
 ## Available Scripts
 
 In the project directory, you can run:
