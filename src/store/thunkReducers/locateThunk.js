@@ -1,9 +1,10 @@
-import { locationAction } from "../Slice/locationSlice";
+import { lgaAction } from "../Slice/lgaSlice";
+import { stateAction } from "../Slice/stateSlice";
 
 export const getState = () =>{
     return async(dispatch) =>{
         const fetchData = async() =>{
-            dispatch(locationAction.isLoad({isLoad: true}))
+            dispatch(stateAction.createList({isPending: true, stateList: [], error: ''}))
             const res = await fetch("http://locationsng-api.herokuapp.com/api/v1/states");
             const data = res.json()
             return data
@@ -11,11 +12,9 @@ export const getState = () =>{
 
         try {
             const response = await fetchData();
-            dispatch(locationAction.isLoad({isLoad: false}))
-            dispatch(locationAction.addState({area: response}))
+            dispatch(stateAction.createList({isPending: false, stateList: response, error: ''}))
         } catch (error) {
-            dispatch(locationAction.isLoad({isLoad: false}))
-            dispatch(locationAction.err({err: error.message}))
+            dispatch(stateAction.createList({isPending: false, stateList: [], error: error.m}))
         }
     }
 }
@@ -23,7 +22,7 @@ export const getState = () =>{
 export const getLGA = (ele) =>{
     return async(dispatch) =>{
         const fetchData = async() =>{
-            dispatch(locationAction.isLoad({isLoad: true}))
+            dispatch(lgaAction.createList({isPending: true, lgaList: [], error: ''}))
 
             const res = await fetch("http://locationsng-api.herokuapp.com/api/v1/lgas");
             const data = res.json()
@@ -32,11 +31,9 @@ export const getLGA = (ele) =>{
 
         try {
             const response = await fetchData();
-            dispatch(locationAction.isLoad({isLoad: false}))
-            dispatch(locationAction.addLGA({lgas: response}))
+            dispatch(lgaAction.createList({isPending: false, lgaList: response, error: ''}))
         } catch (error) {
-            dispatch(locationAction.isLoad({isLoad: false}))
-            dispatch(locationAction.err({err: error.message}))
+            dispatch(lgaAction.createList({isPending: false, lgaList: [], error: error.message}))
         }
     }
 }

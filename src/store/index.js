@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { locationSlice } from "./Slice/locationSlice";
+import { lgaSlice } from "./Slice/lgaSlice";
+import { sLgaSlice } from "./Slice/singleLGASlice";
+import { singleWeatherSlice } from "./Slice/singleWaether";
+import { stateSlice } from "./Slice/stateSlice";
 import { weatherSlice } from "./Slice/weatherSlice";
 
 const store = configureStore({
-    reducer: {location: locationSlice.reducer, weather: weatherSlice.reducer}
-})
-
+    reducer: {stateList: stateSlice.reducer, lga: lgaSlice.reducer, weather: weatherSlice.reducer, single: singleWeatherSlice.reducer, sLga: sLgaSlice.reducer}
+});
 export default store;

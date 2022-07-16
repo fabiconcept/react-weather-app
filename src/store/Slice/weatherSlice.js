@@ -9,7 +9,15 @@ export const weatherSlice = createSlice({
     },
     reducers: {
         addWeather(state, action){
-            state.weather = action.payload.weather;
+            const data = action.payload.weather;
+
+            let exist = state.weather.find(item => item.location.name === data.location.name)
+
+            if (!exist) {
+                state.weather.push(data);
+            }else{
+                exist = data
+            }
         },
         isLoad(state, action){
             state.isLoading = action.payload.isLoading;
