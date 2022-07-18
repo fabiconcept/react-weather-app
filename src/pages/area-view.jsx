@@ -1,15 +1,19 @@
-import React, { useEffect, useState } from 'react'
+/* This is importing the useEffect, useState, useDispatch, useSelector and useParams hooks from the
+react and react-router-dom libraries. */
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom'
-import StateCard from '../components/stateCard';
+import { useParams } from 'react-router-dom';
+/* Importing the viewCard component and the getSingleForecast function from the forecastThunk file. */
 import ViewCard from '../components/viewCard';
 import { getSingleForecast } from '../store/thunkReducers/forecastThunk';
 
 const AreaView = () => {
+  /* This is destructuring the useParams hook. */
   const { id, type } = useParams();
   const dispatch = useDispatch();
   let q = "";
 
+  /* This is a ternary operator. It is a shorthand way of writing an if/else statement. */
   if (id) {
     q = id;
   }else{
@@ -17,11 +21,10 @@ const AreaView = () => {
   }
 
   useEffect(() => {
-    dispatch(getSingleForecast(q))
-  }, [q])
-
+    dispatch(getSingleForecast(`${q} ${q}`))
+  }, [q, dispatch])
+ 
   const [region, setRegion] = useState('');
-  const [num, setNum] = useState(0);
   const [text, setText] = useState('');
   const [temp, settemp] = useState(0);
   const [feelslike_c, setFeelslike_c] = useState('');
@@ -36,19 +39,12 @@ const AreaView = () => {
 
   const forecast = useSelector(state => state.single.weather)
 
-  const localLGA = useSelector(state=> state.sLga.lgas)
-
-  // const watch = useSelector(state => state.single.weather)
-
-  useEffect(()=>{
-    setNum(num + 1)
-    if(num > 2){
-      
-    }
-  },[forecast])
-
   function setData() {
-    setRegion(forecast.location.region);
+    if(forecast.location.region){
+      setRegion(forecast.location.region);
+    }else{
+      setRegion("");
+    }
     setCountry(forecast.location.country);
     setText(forecast.current.condition.text);
     settemp(forecast.current.temp_f);
@@ -65,12 +61,6 @@ const AreaView = () => {
   setTimeout(() => {
     setData()
   }, 500);
-
-
-  
-  // console.log(forecast)
-  
-  
 
   return (
     <div className="area py-3">
@@ -90,21 +80,8 @@ const AreaView = () => {
           isLoad = {isLoad}
         />
       </div>
-      {type &&<div>
-        <p className="h2 text-center text-light">Local Goverment Areas</p>
-        <div className="grid-section pb-4 mt-3">
-          {localLGA.map(item => (
-            <StateCard
-              key={item}
-              name={item}
-              type="ab"
-            />
-          ))}
-        </div>
-      </div>
-      }
     </div>
   )
 }
 
-export default AreaView
+export default AreaView;

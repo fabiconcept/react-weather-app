@@ -22,8 +22,14 @@ const apiUrl = "http://api.weatherapi.com/v1/current.json?key=eb2db56b2a114aeaba
  */
 
 
-export const getForecast = (q,c) =>{
-    const params = `&q=${q} ${c}&aqi=no`;
+/**
+ * It's an asynchronous function that fetches data from the url and returns the data in JSON format
+ * @param q - The city name and the country code divided by a comma, use ISO 3166 country codes.
+ * @returns The data is being returned.
+ */
+export const getForecast = (q) =>{
+    console.log(q);
+    const params = `&q=${q}&aqi=no`;
     const url = `${apiUrl} ${params}`;
 
     return async(dispatch) =>{
@@ -49,6 +55,11 @@ export const getForecast = (q,c) =>{
     }
 }
 
+/**
+ * It's an asynchronous function that fetches data from the url and returns the data in JSON format
+ * @param q - The city name.
+ * @returns The data is being returned.
+ */
 export const getSingleForecast = (q) =>{
     const params = `&q=${q} Nigeria&aqi=no`;
     const url = `${apiUrl} ${params}`;

@@ -83,6 +83,9 @@ const ViewCard = ({isLoad ,region, temp, text, wind_kph, feelslike_c, wind_dir, 
         case "Light drizzle":
             img = "drizzle";
             break;
+        case "Patchy light drizzle":
+            img = "drizzle";
+            break;
         case "Patchy light rain with thunder":
             if(isDay === 1){
                 img = "thunderstorms";
@@ -157,10 +160,16 @@ const ViewCard = ({isLoad ,region, temp, text, wind_kph, feelslike_c, wind_dir, 
                     <img src={`../images/all/${img}.svg`} alt="" />
                 </div>
             </div>}
-            {region === '' && <div className='text-center'>
-                <img src={`../images/vaw.png`} alt="" />
-                <h1 className='text-light py-5'>Comrade! <br /> where you go?</h1>
-                <p className="mt-4 text-light">Sorry! Location Not Found</p>
+            {region === '' && !isLoad && <div className='text-center'>
+                <img src="../images/Load/1490.gif" style={{width: "8rem", mixBlendMode: "screen", filter: "invert()"}} alt="" />
+                <h1 className='text-light py-5'>Comrade! <br /> Discarding all peace?</h1>
+                <p className="mt-4 text-light pb-5">Vawulently Loading data...! If you like wait</p>
+            </div> }
+
+            {region === '' && isLoad && <div className='text-center'>
+                <img src="../images/Load/1490.gif" style={{width: "8rem", mixBlendMode: "screen", filter: "invert()"}} alt="" />
+                <h1 className='text-light py-5'>Comrade! <br /> Where you de go?</h1>
+                <p className="mt-4 text-light pb-5">location not found!</p>
             </div> }
         </div>
     )

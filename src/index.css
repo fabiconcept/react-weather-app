@@ -12,15 +12,16 @@
   --light: rgba(255, 255, 255, .8);
   --mid: linear-gradient(45deg, rgba(235, 235, 235, 0.392), rgba(31, 172, 253, 0.704));
   --text: rgb(59, 59, 59);
-
-  /* --g-color: rgba(2, 1, 73, 0.1);
-  --mid: linear-gradient(45deg, rgba(0, 1, 59, 0.392), rgba(2, 9, 37, 0.704));
-  --back: #002e53; */
 }
 
 .app{
   background-color:  var(--back);
   transition: .5s ease-in-out;
+}
+.load img{
+  mix-blend-mode: screen;
+  width: 5rem;
+  filter: invert();
 }
 
 body::-webkit-scrollbar{
@@ -250,6 +251,7 @@ a:hover{
 .vCard .vIcon img{
   max-width: 40rem;
   position: absolute;
+  margin-top: 5rem;
   animation: ball 4s ease-in-out infinite;
 }
 
@@ -258,12 +260,14 @@ a:hover{
   z-index: 3;
   animation: ball 2s ease-in-out infinite;
   top: 10%;
+  margin-top: 0;
   right: 10%;
 }
 
 .vCard .vIcon img:nth-child(3){
   max-width: 8rem;
   bottom: 10%;
+  margin-top: 0;
   animation: ball 2.2s ease-in-out infinite;
   left: 10%;
 }

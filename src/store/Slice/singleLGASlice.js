@@ -1,16 +1,20 @@
+/* Importing the createSlice function from the reduxjs/toolkit library. */
 import { createSlice } from "@reduxjs/toolkit";
 
 
+/* Creating a slice of the state. */
 export const sLgaSlice = createSlice({
-    name: "selected lgas",
+    name: "selected states",
     initialState:{
-        lgas: []
+        states: []
     },
+    /* Updating the state of the slice. */
     reducers:{
         updateLGA(state, action){
-            state.lgas = action.payload.lgas;
+            state.states = action.payload.states;
         }
     }
 })
 
+/* Exporting the actions from the slice. */
 export const sLgaActions = sLgaSlice.actions;

@@ -1,5 +1,7 @@
+/* Importing the createSlice function from the reduxjs/toolkit library. */
 import { createSlice } from "@reduxjs/toolkit";
 
+/* Creating a slice of the store. */
 export const weatherSlice = createSlice({
     name: 'weather',
     initialState: {
@@ -28,4 +30,5 @@ export const weatherSlice = createSlice({
     }
 })
 
+/* Creating an object with all the actions that can be dispatched to the store. */
 export const weatherAction = weatherSlice.actions;
