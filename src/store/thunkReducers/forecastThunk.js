@@ -3,7 +3,7 @@ import { singleWeatherAction } from "../Slice/singleWaether";
 import { weatherAction } from "../Slice/weatherSlice";
 
 /* The API url. */
-const apiUrl = "http://api.weatherapi.com/v1/current.json?key=eb2db56b2a114aeaba530010221407"
+const apiUrl = "https://api.weatherapi.com/v1/current.json?key=eb2db56b2a114aeaba530010221407"
 
 /**
  * It's an async function that fetches data from an API, then dispatches the data to the reducer.
@@ -28,7 +28,6 @@ const apiUrl = "http://api.weatherapi.com/v1/current.json?key=eb2db56b2a114aeaba
  * @returns The data is being returned.
  */
 export const getForecast = (q) =>{
-    console.log(q);
     const params = `&q=${q}&aqi=no`;
     const url = `${apiUrl} ${params}`;
 

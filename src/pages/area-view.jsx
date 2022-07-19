@@ -3,9 +3,11 @@ react and react-router-dom libraries. */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import StateCard from '../components/stateCard';
 /* Importing the viewCard component and the getSingleForecast function from the forecastThunk file. */
 import ViewCard from '../components/viewCard';
 import { getSingleForecast } from '../store/thunkReducers/forecastThunk';
+import ScrollToTop from 'react-scroll-to-top';
 
 const AreaView = () => {
   /* This is destructuring the useParams hook. */
@@ -21,7 +23,7 @@ const AreaView = () => {
   }
 
   useEffect(() => {
-    dispatch(getSingleForecast(`${q} ${q}`))
+    dispatch(getSingleForecast(`${q}`))
   }, [q, dispatch])
  
   const [region, setRegion] = useState('');
@@ -38,6 +40,7 @@ const AreaView = () => {
   let isLoad = false;
 
   const forecast = useSelector(state => state.single.weather)
+  const localStates = useSelector(state => state.sLga.states)
 
   function setData() {
     if(forecast.location.region){
@@ -45,6 +48,7 @@ const AreaView = () => {
     }else{
       setRegion("");
     }
+    window.scrollTo(0,0);
     setCountry(forecast.location.country);
     setText(forecast.current.condition.text);
     settemp(forecast.current.temp_f);
@@ -64,6 +68,7 @@ const AreaView = () => {
 
   return (
     <div className="area py-3">
+      <ScrollToTop smooth component={"Top"} style={{zIndex: "5000"}}/>
       <div className={`mainCard ${id ? 'py-5': ""}`}>
         <ViewCard
           region= {region}
@@ -80,6 +85,20 @@ const AreaView = () => {
           isLoad = {isLoad}
         />
       </div>
+
+      {type && localStates &&<div>
+        <p className="h2 text-center text-light">Local Goverment Areas</p>
+        <div className="grid-section pb-4 mt-3">
+          {localStates.map(item => (
+            <StateCard
+              key={item.state_code}
+              name={item.name}
+              type="ab"
+            />
+          ))}
+        </div>
+      </div>
+      }
     </div>
   )
 }
