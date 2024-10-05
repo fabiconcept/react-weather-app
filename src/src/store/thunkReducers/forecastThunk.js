@@ -3,7 +3,8 @@ import { singleWeatherAction } from "../Slice/singleWaether";
 import { weatherAction } from "../Slice/weatherSlice";
 
 /* The API url. */
-const apiUrl = "http://api.weatherapi.com/v1/current.json?key=eb2db56b2a114aeaba530010221407"
+const apiKey = process.env.REACT_APP_WEATHER_KEY;
+const apiUrl = `https://api.weatherapi.com/v1/current.json?key=${apiKey}`
 
 /**
  * It's an async function that fetches data from an API, then dispatches the data to the reducer.
